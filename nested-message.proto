@@ -1,0 +1,53 @@
+syntax= "proto3";
+
+// this is a comment
+
+/*
+* this is a multi line comment
+*/
+message Person {
+    // age of person
+    int32 age=1;
+    //first_name of the person
+    string first_name=2;
+    string last_name=3;
+    //here picture represent a small .jpg file
+    bytes picture= 4;
+    bool is_verified=5; //is person verified or not
+    float height=6;
+    repeated string phone_numbers=7;
+
+    // eye color is an enum as defined and can be used as a type elsewhere
+    enum EyeColor{
+        UNKNOWN=0;
+        GREEN=1;
+        BROWN=2;
+        BLUE=3;
+    }
+
+    EyeColor EyeColour= 8;
+    //now can be referenced from the same file.
+    Date bithday=9;
+    //we can also define the message nesting instead of reference
+    message Address{
+        string address_line_1=1;
+        string country=2;
+        string zip=3;
+    }
+
+    repeated Address addresses=10;
+}
+
+
+message Date{
+    // Year of date. Must be from 1 to 9999, or 0 if specifying a date without
+   // a year.
+     int32 year=1;
+     // Month of year. Must be from 1 to 12, or 0 if specifying a year without a
+   // month and day.
+     int32 month=2;
+     // Day of month. Must be from 1 to 31 and valid for the year and month, or 0
+   // if specifying a year by itself or a year and month where the day is not
+   // significant
+     int32 day=3;
+ }
